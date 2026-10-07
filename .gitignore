@@ -3,3 +3,7 @@ __pycache__/
 media/
 animations/
 *.mp4
+
+# local-only: agent notes + working plans (never commit)
+AGENT.md
+plans/

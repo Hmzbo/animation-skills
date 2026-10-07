@@ -1,5 +1,5 @@
 ---
-name: manim-animator
+name: manim
 description: Plan, code, and render polished mathematical explainer videos with Manim Community Edition (ManimCE), fully provisioned through uv. Acts as a creative director to storyboard the video, then writes idiomatic Manim Python, draft-renders at low quality, and delivers a Full HD mp4 path. Use when the user wants to animate or visualize math, physics, engineering, or CS concepts; solve equations step by step; illustrate proofs; plot functions; approximate integrals with Riemann sums; demonstrate algorithms; or request 3Blue1Brown-style educational animations.
 license: MIT
 compatibility: Requires uv (https://docs.astral.sh/uv) on PATH. First render may download packages into the uv cache (network needed once). Optional LaTeX for MathTex; optional ffmpeg for stitching.

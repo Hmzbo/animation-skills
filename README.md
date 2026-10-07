@@ -1,86 +1,69 @@
-# manim-animator
+# animation-skills
 
-An [Agent Skill](https://agentskills.io) that turns any AI coding agent into a mathematical
-animation studio. Give it a topic — *"explain how x+10=1 is solved"* or *"show me why an
-integral is the area under a curve"* — and it acts as a creative director: it plans a clean,
-compelling video storyboard, writes idiomatic [Manim Community Edition](https://www.manim.community)
-Python, drafts at low quality to verify everything works, then renders the final video in
-Full HD and hands you the file path.
+A monorepo of [Agent Skills](https://agentskills.io) that turn an AI coding agent
+into an animation studio: math explainers, code-driven product videos, GPU 3D
+motion graphics, and web animation — all generated from code, rendered to MP4.
 
-Everything runs through [uv](https://docs.astral.sh/uv) — no conda, no pip, no global
-installs, no manual environment setup.
+> Formerly `manim-animator` (single skill). Manim is now `skills/oss/manim/`
+> and still works exactly as before.
 
-## What it produces
+## Skills
 
-```
-<your-cwd>/animations/<topic-slug>/
-├── plan.md        # The storyboard written during the planning phase
-├── scene.py       # Idiomatic ManimCE code, one Scene class per act
-├── media/         # Manim render output (draft + final passes)
-└── final.mp4      # Delivered video - 1080p60 Full HD by default
-```
+| Skill | Bucket | License | Use for |
+|---|---|---|---|
+| `manim` | oss | MIT | Math/physics/CS explainer videos (3Blue1Brown style) |
+| `motion-canvas` | oss | MIT | TS explanatory videos, animated charts (stub) |
+| `threejs` | oss | MIT | GPU 3D: product spins, particles, shaders (stub) |
+| `wgpu-shaders` | oss | MIT/Apache-2.0 | Rust GPU shader-art procedurals (stub) |
+| `remotion` | source-available | Remotion License | React video: marketing, UI walkthroughs (stub) |
+| `gsap-motion` | proprietary-free | GSAP Standard License | Web UI motion, scroll stories (stub) |
 
-Multi-act videos use Manim's Sections API so the deliverable is a single chaptered `final.mp4`
-(no stitching required in most cases; a stitch script with a pyav fallback covers the rest).
+**License warnings (read before commercial use):**
+- `source-available/` (Remotion) is NOT OSI open-source: https://www.remotion.dev/docs/license
+- `proprietary-free/` (GSAP) is gratis but proprietary with a non-compete clause: https://gsap.com/community/standard-license/
+- Stubs (`status: stub` in frontmatter) get full content in Phase 2.
 
-## Workflow
+Shared render backend: `shared/ffmpeg/` (encode + frame-review recipes every skill reuses).
 
-```
-preflight -> PLAN -> CODE -> DRAFT RENDER (-ql) -> fix loop -> FINAL RENDER (-qh) -> DELIVER
-                                                ^__________|
-                                           revision loop (-ql until satisfied)
-```
+## Install (flat — required)
 
-| Phase | What happens |
-|---|---|
-| Preflight | Verifies uv, provisions manim on demand, detects LaTeX/ffmpeg availability |
-| PLAN | Creative-director storyboard: narrative arc, per-scene beats, techniques, palette. No code |
-| CODE | Writes `scene.py` following curated Manim patterns and pitfall avoidance |
-| DRAFT | Renders every scene at 480p15 (seconds, not minutes) and fixes errors before paying for quality |
-| FINAL | Re-renders approved code at 1080p60 Full HD |
-| REVISIONS | Changes re-render at draft quality for speed; Full HD only once approved |
-
-## Install
-
-With the skills CLI:
+Clients expect flat `skills/<name>/SKILL.md`, but this repo nests by license
+bucket. Do NOT clone the whole repo into a skills dir. Use the shim:
 
 ```bash
-npx skills add Hmzbo/manim-animator
+python scripts/install.py --list
+python scripts/install.py --skill manim --target ~/.config/opencode/skills
+python scripts/install.py --all --target ~/.claude/skills
 ```
 
-Or manually clone into your agent's skill directory (the whole repo *is* the skill):
+Targets: OpenCode project `.opencode/skills/` or global `~/.config/opencode/skills/`,
+Claude Code `~/.claude/skills/`, any agentskills client `~/.agents/skills/`.
+
+## Repo layout
+
+```
+skills/oss/manim/            # the original manim-animator skill (full content)
+skills/oss|source-available|proprietary-free/<name>/  # stubs -> Phase 2
+shared/ffmpeg/               # shared encode recipes
+scripts/{install.py,check.py}  # repo tooling
+plans/                       # working plans (local-only, gitignored)
+animations/ media/           # your render output (gitignored, never commit)
+```
+
+## Validate
 
 ```bash
-# opencode (project)          .opencode/skills/
-# opencode (global)           ~/.config/opencode/skills/
-# Claude Code (global)        ~/.claude/skills/
-# any agentskills client      ~/.agents/skills/
-
-git clone https://github.com/Hmzbo/manim-animator ~/.config/opencode/skills/manim-animator
+python scripts/check.py
+uv run skills/oss/manim/scripts/preflight.py
 ```
 
-## Requirements
-
-| Component | Required | Notes |
-|---|---|---|
-| [uv](https://docs.astral.sh/uv) | Yes | The skill never uses pip/conda. Install: `powershell -c "irm https://astral.sh/uv/install.ps1 \| iex"` (Windows) or `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
-| Network access | First run only | uv fetches manim and a managed Python into its cache |
-| LaTeX (MiKTeX / TeX Live / MacTeX) | Optional | Needed for `MathTex` equation rendering. Without it the skill degrades gracefully to plain-text visuals |
-| ffmpeg | Optional | Only for stitching independently-rendered scenes; pyav fallback included |
-
-Run the bundled checker anytime:
-
-```bash
-uv run <skill-dir>/scripts/preflight.py
-```
-
-## Example prompts
+## Example prompts (manim, ready now)
 
 - "Animate solving the equation x + 10 = 1 step by step."
 - "Make a video explaining integrals as area under a curve, with Riemann rectangles getting finer."
 - "Visually explain the Pythagorean theorem."
-- "Show gradient descent converging on a function."
 
 ## License
 
-[MIT](LICENSE)
+Repo scaffolding is MIT (`LICENSE`). Each skill dir carries its own `LICENSE`
+or `LICENSE.note` with upstream terms — the skill license governs the skill.
