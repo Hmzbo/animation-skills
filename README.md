@@ -13,7 +13,7 @@ motion graphics, and web animation — all generated from code, rendered to MP4.
 |---|---|---|---|
 | `manim` | oss | MIT | Math/physics/CS explainer videos (3Blue1Brown style) |
 | `motion-canvas` | oss | MIT | TS explanatory videos, animated charts |
-| `threejs` | oss | MIT | GPU 3D: product spins, particles, shaders (stub) |
+| `threejs` | oss | MIT | GPU 3D: product spins, particles, shaders |
 | `wgpu-shaders` | oss | MIT/Apache-2.0 | Rust GPU shader-art procedurals (stub) |
 | `remotion` | source-available | Remotion License | React video: marketing, UI walkthroughs (stub) |
 | `gsap-motion` | proprietary-free | GSAP Standard License | Web UI motion, scroll stories (stub) |
