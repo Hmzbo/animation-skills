@@ -12,7 +12,7 @@ motion graphics, and web animation — all generated from code, rendered to MP4.
 | Skill | Bucket | License | Use for |
 |---|---|---|---|
 | `manim` | oss | MIT | Math/physics/CS explainer videos (3Blue1Brown style) |
-| `motion-canvas` | oss | MIT | TS explanatory videos, animated charts (stub) |
+| `motion-canvas` | oss | MIT | TS explanatory videos, animated charts |
 | `threejs` | oss | MIT | GPU 3D: product spins, particles, shaders (stub) |
 | `wgpu-shaders` | oss | MIT/Apache-2.0 | Rust GPU shader-art procedurals (stub) |
 | `remotion` | source-available | Remotion License | React video: marketing, UI walkthroughs (stub) |
@@ -25,19 +25,27 @@ motion graphics, and web animation — all generated from code, rendered to MP4.
 
 Shared render backend: `shared/ffmpeg/` (encode + frame-review recipes every skill reuses).
 
-## Install (flat — required)
+## Install
 
-Clients expect flat `skills/<name>/SKILL.md`, but this repo nests by license
-bucket. Do NOT clone the whole repo into a skills dir. Use the shim:
+With the skills CLI (recommended — picks up all 6 skills despite the license-bucket nesting):
+
+```bash
+npx skills add Hmzbo/animation-skills              # everything
+npx skills add Hmzbo/animation-skills -s manim     # one skill: -s motion-canvas|threejs|wgpu-shaders|remotion|gsap-motion
+npx skills add Hmzbo/animation-skills -l            # list before installing
+```
+
+Add `-g` for a global install, or run inside your project for a project-level one.
+Targets are auto-detected: OpenCode (`.opencode/skills/` or `~/.config/opencode/skills/`),
+Claude Code (`~/.claude/skills/`), or any agentskills client (`~/.agents/skills/`).
+
+Manual fallback (no npx — plain copy, same flat result):
 
 ```bash
 python scripts/install.py --list
 python scripts/install.py --skill manim --target ~/.config/opencode/skills
 python scripts/install.py --all --target ~/.claude/skills
 ```
-
-Targets: OpenCode project `.opencode/skills/` or global `~/.config/opencode/skills/`,
-Claude Code `~/.claude/skills/`, any agentskills client `~/.agents/skills/`.
 
 ## Repo layout
 
