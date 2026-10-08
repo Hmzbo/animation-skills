@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    html,body{margin:0;background:#0b0e14;height:720px;width:1280px;overflow:hidden}
+    #stage{width:1280px;height:720px;display:flex;justify-content:center;align-items:center;gap:64px;font-family:Arial,sans-serif}
+    .stat{text-align:center}
+    .num{color:#fff;font-size:96px;font-weight:800;margin:0}
+    .lbl{color:#14b8a6;font-size:28px;font-weight:700;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div id="stage">
+    <div class="stat"><p class="num" id="n1">0</p><div class="lbl">frames rendered</div></div>
+    <div class="stat"><p class="num" id="n2">0</p><div class="lbl">skills shipped</div></div>
+    <div class="stat"><p class="num" id="n3">0</p><div class="lbl">bugs caught</div></div>
+  </div>
+  <script src="/node_modules/gsap/dist/gsap.min.js"></script>
+  <script src="/scene.js"></script>
+</body>
+</html>
