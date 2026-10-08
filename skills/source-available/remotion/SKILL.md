@@ -79,7 +79,7 @@ visualizing; methods step by step.
 Scaffold non-interactively, then install:
 
 ```bash
-npx -y create-video@<pinned> --yes --blank <slug> --path <cwd>/videos-react/<slug>
+npx -y create-video@<pinned> --yes --blank <cwd>/videos-react/<slug>
 npm install --prefix <cwd>/videos-react/<slug>
 ```
 

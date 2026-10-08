@@ -3,8 +3,11 @@
 ## Scaffold / install
 
 - `create-video` is interactive by default. Agents scaffold with
-  `npx -y create-video@<pinned> --yes --blank <slug>` and pin the version in
-  the plan — CLI flags move between majors.
+  `npx -y create-video@<pinned> --yes --blank <dir>` and pin the version in
+  the plan — CLI flags move between majors. **The directory is a positional
+  argument**: there is no `--path` flag (observed: passing one produced a
+  half-scaffolded dir + npm enoent). Verify `package.json` exists after
+  scaffolding before installing.
 - First render provisions Chromium + bundles (minutes, once). Start it early;
   everything after is incremental.
 

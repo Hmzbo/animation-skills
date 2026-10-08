@@ -1,0 +1,24 @@
+{
+  "name": "animation-skills",
+  "version": "1.0.0",
+  "description": "A monorepo of [Agent Skills](https://agentskills.io) that turn an AI coding agent into an animation studio: math explainers, code-driven product videos, GPU 3D motion graphics, and web animation — all generated from code, rendered to MP4.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hmzbo/animation-skills.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Hmzbo/animation-skills/issues"
+  },
+  "homepage": "https://github.com/Hmzbo/animation-skills#readme"
+}

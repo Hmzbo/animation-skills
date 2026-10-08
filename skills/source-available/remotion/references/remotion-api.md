@@ -1,7 +1,8 @@
 # Remotion API catalog (v4.0.534, verified by rendered output)
 
 Pinned: `remotion@4.0.534`, `create-video@4.0.534`, React 19. Scaffold:
-`npx -y create-video@<v> --yes --blank <slug>` (+ `--path` for location),
+`npx -y create-video@<v> --yes --blank <dir>` (directory is a POSITIONAL arg —
+there is no `--path`; passing one silently breaks the scaffold),
 `npm install`. Scripts: `dev` (studio), `build` (bundle), `lint` (`eslint src && tsc`).
 
 ## Frame model (the law)
